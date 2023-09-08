@@ -1,7 +1,13 @@
 [package]
 name = "rust-numerals"
+description = "Crate for converting `i64` integers into their cardinal string format."
+authors = ["David White"]
 version = "0.1.0"
 edition = "2021"
+keywords = ["numbers", "cardinals", "ordinals", "string"]
+license-file = "LICENSE"
+repository = "https://github.com/davidrhyswhite/rust-numerals/"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

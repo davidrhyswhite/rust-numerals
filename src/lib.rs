@@ -1,12 +1,43 @@
+/// Represents the string "zero".
 const ZERO: &'static str = "zero";
+
+/// Represents the prefix for negative numbers.
 const SIGNED: &'static str = "minus ";
+
+/// Separator used to join various parts of the number's text representation.
 const SEPARATOR: &'static str = " and ";
+
+/// Representations for one-digit numbers.
 const ONES: [&'static str; 10] = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+
+/// Representations for the numbers 11 to 19.
 const TEENS: [&'static str; 10] = ["", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+
+/// Representations for multiples of ten.
 const TENS: [&'static str; 10] = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+/// Represents the word for hundred.
 const HUNDRED: &'static str = "hundred";
+
+/// Representations for number scales.
 const SCALES: [&'static str; 7] = ["", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion"];
 
+/// Converts a given integer `number` to its cardinal string representation.
+///
+/// # Examples
+///
+/// ```
+/// use rust_numerals::number_to_cardinal;
+/// assert_eq!(number_to_cardinal(12345), "twelve thousand three hundred and forty-five");
+/// ```
+///
+/// # Arguments
+///
+/// * `number` - The integer value to be converted to text.
+///
+/// # Returns
+///
+/// Returns a `String` representing the cardinal version of the input number.
 pub fn number_to_cardinal(number: i64) -> String {
     if number == 0 {
         return ZERO.to_string();
@@ -31,6 +62,16 @@ pub fn number_to_cardinal(number: i64) -> String {
     words.trim().to_string()
 }
 
+/// Converts a chunk of the number to its cardinal string representation and appends its scale.
+///
+/// # Arguments
+///
+/// * `chunk` - A part of the number to be converted, typically 3 digits long.
+/// * `scale_idx` - The index representing the scale (thousand, million, etc.) of the chunk.
+///
+/// # Returns
+///
+/// Returns an `Option<String>` where the `Some` variant contains the cardinal representation of the chunk and the `None` variant is returned for chunks that are zeros.
 fn get_chunk_words(chunk: u64, scale_idx: usize) -> Option<String> {
     if chunk == 0 {
         return None;
@@ -43,6 +84,15 @@ fn get_chunk_words(chunk: u64, scale_idx: usize) -> Option<String> {
     Some(result)
 }
 
+/// Converts a number (up to 999) to its cardinal string representation.
+///
+/// # Arguments
+///
+/// * `number` - The integer value (up to 999) to be converted to text.
+///
+/// # Returns
+///
+/// Returns a `String` representing the cardinal version of the input number.
 fn convert_number_to_cardinal(number: i64) -> String {
     let mut words = String::new();
 
